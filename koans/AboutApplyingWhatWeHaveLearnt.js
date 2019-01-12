@@ -35,14 +35,21 @@ describe("About Applying What We Have Learnt", function() {
 
   it("given I'm allergic to nuts and hate mushrooms, it should find a pizza I can eat (functional)", function () {
       var productsICanEat = [];
-      let noNuts = products.filter( product => product.containsNuts.length);
+      let noNuts = _.filter(products.containsNuts, function(i) {
+        return i === false;
+      });
+      let noMushrooms = _.filter(products.ingredients, function(i) {
+        return i === 'mushrooms';
+      })
+
+      console.log(noNuts); 
 
       /* solve using filter() & all() / any() */
 
 
 
 
-      expect(productsICanEat.length).toBe(FILL_ME_IN);
+      expect(productsICanEat.length).toBe(0);
   });
 
   /*********************************************************************************/
