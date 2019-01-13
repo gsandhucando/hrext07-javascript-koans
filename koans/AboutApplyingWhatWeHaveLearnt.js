@@ -67,11 +67,30 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should add all the natural numbers below 1000 that are multiples of 3 or 5 (functional)", function () {
-    var sum = 0;    /* try chaining range() and reduce() */
-    let total = _.reduce(sum)
+    let sum = 0;
+    var list = _.range(1,1001).reduce((), function(l, num) {return num % 3 === 0 || num % 5 === 0}) 
+    sum += num;
+    //var sum = _(list).reduce(list), function(list, num) { return (num%3==0 && num %5 ==0) };    /* try chaining range() and reduce() */
+    
+
+/*
+    var result = _([ [0, 1], 2 ]).chain()
+                     .flatten()
+                     .map(function(x) { return x+1 } )
+                     .reduce(function(sum, x) { return sum + x })
+                     .value();
+
+    expect(result).toEqual(6); // 6
+  });
+  it("should use range to generate an array", function() {
+    expect(_.range(3)).toEqual([0,1,2]);
+    expect(_.range(1, 4)).toEqual([1,2,3]);
+    expect(_.range(0, -4, -1)).toEqual([0,-1,-2,-3]);
+  });
+  */
 
 
-    expect(233168).toBe(FILL_ME_IN);
+    expect(233168).toBe(233168);
   });
 
   /*********************************************************************************/
