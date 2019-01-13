@@ -67,9 +67,15 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should add all the natural numbers below 1000 that are multiples of 3 or 5 (functional)", function () {
-    let sum = 0;
-    var list = _.range(1,1001).reduce((), function(l, num) {return num % 3 === 0 || num % 5 === 0}) 
-    sum += num;
+    let total = 0
+      var sum = _.range(1, 10001)
+                 .reduce(function (sum, x)  {
+                    if (x % 3 === 0 || x % 5 === 0) {
+                    total += x;
+                    }
+                    return total;
+                
+                 });
     //var sum = _(list).reduce(list), function(list, num) { return (num%3==0 && num %5 ==0) };    /* try chaining range() and reduce() */
     
 
