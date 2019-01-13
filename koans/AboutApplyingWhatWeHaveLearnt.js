@@ -76,7 +76,7 @@ describe("About Applying What We Have Learnt", function() {
                     return total;
                 
                  });
-    //var sum = _(list).reduce(list), function(list, num) { return (num%3==0 && num %5 ==0) };    /* try chaining range() and reduce() */
+    /* try chaining range() and reduce() */
     
 
 /*
@@ -113,9 +113,22 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should count the ingredient occurrence (functional)", function () {
-    var ingredientCount = { "{ingredient name}": 0 };
+var ingredientCount = { "{ingredient name}": 0 };
 
-    /* chain() together map(), flatten() and reduce() */
+/* chain() together map(), flatten() and reduce() */
+let pizza = _.chain(products)
+            .map(function (value) {
+            for (let key in value.ingredients) {
+                ingredientCount = value;
+            }
+            })
+            // .flatten(array);
+            // .reduce(function(sum, x) {
+
+            // })
+
+console.log(ingredientCount);
+
 
     expect(ingredientCount['mushrooms']).toBe(FILL_ME_IN);
   });
