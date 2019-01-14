@@ -38,17 +38,15 @@ describe("About Applying What We Have Learnt", function() {
 
       /* solve using filter() & all() / any() */
     var productsICanEat = [];
-    let noNuts = products.filter(function(i) {
-      return (i.containsNuts === false);
+
+    let hasMushrooms = function(x) { x === "mushrooms"};
+
+    _(products).filter(function(x) {
+      if (x.containsNuts === false && !_(x.ingredients).any(hasMushrooms)) {
+        productsICanEat.push(x.name);
+      };
     });
 
-    let hasnoMushrooms = function(x) { x === "mushrooms"};
-
-    productsICanEat = noNuts.filter(function(i) {
-      return !(i.ingredients.some(hasnoMushrooms));
-      });
-
-    console.log(productsICanEat);
  
 
 
