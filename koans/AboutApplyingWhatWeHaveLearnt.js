@@ -37,19 +37,23 @@ describe("About Applying What We Have Learnt", function() {
       var productsICanEat = [];
 
       /* solve using filter() & all() / any() */
-      let haveMushrooms = function(x) {
-        return x === 'mushrooms';
-      }
-      
-      _(products).filter(function(x) {
-        if(x.containsNuts === false && !_(x.ingredients).any(haveMushrooms)) {
-          productsICanEat.push(x.name);
-        };
-      })      
+    var productsICanEat = [];
+    let noNuts = products.filter(function(i) {
+      return (i.containsNuts === false);
+    });
+
+    let hasnoMushrooms = function(x) { x === "mushrooms"};
+
+    productsICanEat = noNuts.filter(function(i) {
+      return !(i.ingredients.some(hasnoMushrooms));
+      });
+
+    console.log(productsICanEat);
+ 
 
 
 
-      expect(productsICanEat.length).toBe(1);
+      expect(productsICanEat.length).toBe(3);
   });
 
   /*********************************************************************************/
@@ -118,19 +122,47 @@ var ingredientCount = { "{ingredient name}": 0 };
 /* chain() together map(), flatten() and reduce() */
 let pizza = _.chain(products)
             .map(function (value) {
+            let arr = [];
+                
             for (let key in value.ingredients) {
-                ingredientCount = value;
+                let ingredient = value.ingredients[key]; 
+                
+                arr.push(ingredient);
+                    // return ingredient
+                
+                    // console.log('running keys')
+                    // const keys = Object.keys(ingredientCount);
+                    // for (let prop in keys) {
+                    //     console.log(prop)
+                    //     if (keys[prop] === ingredient) {
+                    //         ingredientCount[ingredient] += 1
+                    //     } else if (ingredientCount[ingredient] === undefined) {
+                    //         ingredientCount[ingredient] = 1;
+                    //     }
+                    // }
             }
+            return arr;
             })
-            // .flatten(array);
-            // .reduce(function(sum, x) {
-
-            // })
+            .flatten()
+            .reduce(function (memo, value, key, list ) {
+                
+                for (let i = key + 1; i < list.length; i++) {
+                    console.log(i)
+                    let ingredient = list[i];
+                    if (value === ingredient) {
+                        ingredientCount[ingredient] += 1 
+                    // } else if (ingredientCount[memo] === undefined) {
+                    //     ingredientCount[memo] = 1;
+                    } else if (ingredientCount[ingredient] === undefined) {
+                        ingredientCount[ingredient] = 1;
+                    }
+                }
+            }, 'artichoke');
 
 console.log(ingredientCount);
 
 
-    expect(ingredientCount['mushrooms']).toBe(FILL_ME_IN);
+    expect(ingredientCount['mushrooms']).toBe(2);
   });
 
   /*********************************************************************************/
