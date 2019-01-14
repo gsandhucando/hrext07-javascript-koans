@@ -118,44 +118,14 @@ describe("About Applying What We Have Learnt", function() {
 var ingredientCount = { "{ingredient name}": 0 };
 
 /* chain() together map(), flatten() and reduce() */
-let pizza = _.chain(products)
-            .map(function (value) {
-            let arr = [];
-                
-            for (let key in value.ingredients) {
-                let ingredient = value.ingredients[key]; 
-                
-                arr.push(ingredient);
-                    // return ingredient
-                
-                    // console.log('running keys')
-                    // const keys = Object.keys(ingredientCount);
-                    // for (let prop in keys) {
-                    //     console.log(prop)
-                    //     if (keys[prop] === ingredient) {
-                    //         ingredientCount[ingredient] += 1
-                    //     } else if (ingredientCount[ingredient] === undefined) {
-                    //         ingredientCount[ingredient] = 1;
-                    //     }
-                    // }
-            }
-            return arr;
-            })
-            .flatten()
-            .reduce(function (memo, value, key, list ) {
-                
-                for (let i = key + 1; i < list.length; i++) {
-                    console.log(i)
-                    let ingredient = list[i];
-                    if (value === ingredient) {
-                        ingredientCount[ingredient] += 1 
-                    // } else if (ingredientCount[memo] === undefined) {
-                    //     ingredientCount[memo] = 1;
-                    } else if (ingredientCount[ingredient] === undefined) {
-                        ingredientCount[ingredient] = 1;
-                    }
-                }
-            }, 'artichoke');
+let pizza = _.chain(products).map(function(product) {
+    return product.ingredients;
+}).flatten().reduce((function (ingredientCount, ingredient) {
+    ingredientCount[ingredient] = (ingredientCount[ingredient] || 0) + 1;
+    return ingredientCount;
+}), ingredientCount).value()
+console.log(ingredientCount);
+// console.log(pizza)
 
 console.log(ingredientCount);
 
