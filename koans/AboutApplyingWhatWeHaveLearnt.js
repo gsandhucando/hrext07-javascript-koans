@@ -124,8 +124,7 @@ let pizza = _.chain(products).map(function(product) {
     ingredientCount[ingredient] = (ingredientCount[ingredient] || 0) + 1;
     return ingredientCount;
 }), ingredientCount).value()
-console.log(ingredientCount);
-// console.log(pizza)
+
 
 console.log(ingredientCount);
 
